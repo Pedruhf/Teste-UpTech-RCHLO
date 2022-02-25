@@ -1,0 +1,235 @@
+.checkout-container {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-container .titles {
+  width: 100%;
+  padding: 4rem;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--primary-gray-color);
+  color: var(--dark-gray-color);
+}
+
+.checkout-container .titles h1 {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.checkout-container .titles p {
+  margin-top: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.75rem
+}
+
+.checkout-container .product-card {
+  width: 80%;
+  max-width: 50rem;
+  margin-top: 2rem;
+  border: 1px solid var(--secundary-gray-color);
+  border-radius: 0.2rem;
+
+  font-size: 1.5rem;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-container .product-card-header {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.8rem;
+  border-bottom: 1px solid var(--secundary-gray-color);
+  background: #f7f7f7;
+}
+
+.checkout-container .product-data {
+  width: 90%;
+  padding: 1.2rem 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-container .product-data img {
+  width: 100%;
+  margin-bottom: 0.3rem;
+  padding: 0.2rem;
+  border: 1px solid var(--secundary-gray-color);
+  border-radius: 0.2rem;
+}
+
+.checkout-container .product-data .description-item {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  align-self: flex-start;
+}
+
+.checkout-container .product-data .description-item p {
+  font-weight: 700;
+}
+
+.checkout-container .product-data .description-item span {
+  margin-top: 0.3rem;
+}
+
+.checkout-container .quantity-and-price {
+  width: 80%;
+  max-width: 50rem;
+  padding: 0.5rem 1.5rem 2rem;
+  margin-top: 1.2rem;
+  border: 1px solid var(--secundary-gray-color);
+  border-radius: 0.2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  width: 80%;
+  max-width: 50rem;
+  margin: 2rem auto;
+}
+
+form section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+form section p {
+  font-size: 1.5rem;
+  color: var(--dark-gray-color);
+}
+
+.checkout-container .quantity-and-price .input-field,
+form section .input-field {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  color: var(--dark-gray-color);
+}
+
+form section .input-field label {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.checkout-container .quantity-and-price input,
+form section .input-field input,
+form section .input-field select {
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 0.75rem;
+  padding: 0 0.6rem;
+
+  border: 1px solid var(--secundary-gray-color);
+  border-radius: 0.3rem;
+  outline: 0;
+
+  font-size: 0.9rem;  
+  background: inherit;
+}
+
+.checkout-container .quantity-and-price input:focus,
+form section .input-field input:focus, 
+form section .input-field select:focus {
+  outline: 2px solid var(--secondary-blue-color);
+}
+
+form section .input-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 98.5%;
+  background-position-y: 50%;
+}
+
+form section .input-field input[type="checkbox"] {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin: 0;
+  margin-right: 0.4rem;
+  border: 1px solid var(--secundary-gray-color);
+  outline: 0;
+}
+
+form section + section {
+  margin-top: 3rem;
+}
+
+form button {
+  margin-top: 2rem;
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+  
+  border: 0;
+  outline: 0;
+
+  background: var(--primary-blue-color);
+  color: #fff;
+  font-size: 1rem;
+}
+
+@media (max-width: 540px) {
+  .checkout-container .titles {
+    padding: 2rem;
+  }
+
+  .checkout-container .titles h1 {
+    font-size: 2rem;
+  }
+  
+  .checkout-container .titles p {
+    max-width: 26rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem
+  }
+
+  .checkout-container .product-card-header {
+    font-size: 1.2rem;
+  }
+
+  .checkout-container .product-data .description-item {
+    font-size: 0.9rem;
+  }
+
+  form section + section {
+    margin-top: 2rem;
+  }
+
+  form section p {
+    font-size: 1.1rem;
+  }
+
+  form section .input-field label {
+    font-size: 0.8rem;
+  }
+
+  form section .input-field input,
+  form section .input-field select {
+    font-size: 0.8rem;  
+  }
+}
+
+.invalid-field {
+  border: 2px solid var(--secondary-red-color) !important;
+}
