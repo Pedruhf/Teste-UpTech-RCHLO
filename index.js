@@ -7,7 +7,6 @@ const submitButton = document.getElementById("submit-button");
 const quantityField = document.getElementById("quantity")
 const cpfField = document.getElementById("CPF");
 const cvvField = document.getElementById("cardCVV");
-const newsletterOption = document.getElementById("newsletter");
 
 // Eventos
 this.onload = () => {
@@ -18,7 +17,7 @@ this.onload = () => {
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
   this.validateFields();
-  this.calculateCardShelfLife();
+  this.showInsertedData();
 });
 
 quantityField.addEventListener("input", () => {
@@ -32,7 +31,7 @@ quantityField.addEventListener("input", () => {
     return alert("A quantidade máxima permitida é 99");
   }
 
-  const totalPrice = this.calculateTotal(quantityField.value);
+  const totalPrice = this.calculateTotal();
   document.getElementById("total-price").value = totalPrice.toLocaleString("pt-br", { style: "currency" , currency: "BRL"});
 });
 
@@ -169,7 +168,8 @@ function validateCardShelfLife() {
   this.handleClassOfInvalidInputs("cardShelfLife", REMOVE_INVALID_CLASS);
 }
 
-function calculateTotal(quantity) {
+function calculateTotal() {
+  const quantity = quantityField.value;
   const price = document.getElementById("item-price").textContent;
   const stringPrice = price.split(" ")[1].replace(",", ".");
   const numberPrice = Number(stringPrice);
@@ -189,4 +189,43 @@ function handleClassOfInvalidInputs(inputId, option) {
   option === 1
     ? document.getElementById(inputId).classList.add("invalid-field")
     : document.getElementById(inputId).classList.remove("invalid-field");
+}
+
+function getFlagName(flagParam) {
+  const options = {
+    mastercard: "Mastercard",
+    visa: "Visa",
+    americanExpress: "American Express"
+  }
+
+  return options[flagParam];
+}
+
+function showInsertedData() {
+  const fullName = document.getElementById("fullName").value;
+  const email = document.getElementById("email").value;
+  const cpf = document.getElementById("CPF").value;
+  const newsletterOption = document.getElementById("newsletter").checked;
+  const cvv = document.getElementById("cardCVV").value;
+  const cardFlag = this.getFlagName(document.getElementById("cardFlag").value);
+  const cardShelfLife = this.calculateCardShelfLife();
+  const total = this.calculateTotal().toLocaleString("pt-br", { style: "currency" , currency: "BRL"});
+
+
+  alert(
+    `
+      Confirme seus dados
+
+      Nome: ${fullName}
+      E-mail: ${email}
+      CPF: ${cpf}
+      CVV: ${cvv}
+      Bandeira do cartão de crédito: ${cardFlag}
+      Validate do cartão de crédito: ${cardShelfLife}
+
+      ${newsletterOption ? "Aceita receber a newsletter da RCHLO" : "Não quer receber a newsletter da RCHLO"}
+
+      Total: ${total}
+    `
+  );
 }
