@@ -62,6 +62,7 @@
                             value="1"
                             min="1"
                             max="99"
+                            oninput="handleTotalPrice(event)"
                         />
                     </div>
                     <div class="input-field">
@@ -146,7 +147,7 @@
                     </section>
                 </div>
     
-                <button id="submit-button" type="submit">Confirmar Pedido</button>
+                <button id="submit-button" onclick="handleSubmitForm(event)" type="submit">Confirmar Pedido</button>
             </form>
         </div>
     </main>

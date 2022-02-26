@@ -2,11 +2,12 @@
 const ADD_INVALID_CLASS = 1;
 const REMOVE_INVALID_CLASS = 0;
 
+
 // Instancias
-const submitButton = document.getElementById("submit-button");
 const quantityField = document.getElementById("quantity")
 const cpfField = document.getElementById("CPF");
 const cvvField = document.getElementById("cardCVV");
+
 
 // Eventos
 this.onload = () => {
@@ -14,29 +15,29 @@ this.onload = () => {
   document.getElementById("total-price").value = price;
 }
 
-submitButton.addEventListener("click", (event) => {
+function handleSubmitForm(event) {
   event.preventDefault();
   if(!this.validateFields()) {
     return;
   }
   
   this.showInsertedData();
-});
+}
 
-quantityField.addEventListener("input", () => {
-  if (quantityField.value <= 0) {
+function handleTotalPrice(event) {
+  if (event.target.value <= 0) {
     quantityField.value = 1;
     return alert("A quantidade de produtos deve ser pelo menos 1");
   }
 
-  if (quantityField.value > 99) {
+  if (event.target.value > 99) {
     quantityField.value = 99;
     return alert("A quantidade máxima permitida é 99");
   }
 
   const totalPrice = this.calculateTotal();
   document.getElementById("total-price").value = totalPrice.toLocaleString("pt-br", { style: "currency" , currency: "BRL"});
-});
+};
 
 cpfField.addEventListener("keydown", (event) => {
   if(event.key === "Backspace") {
