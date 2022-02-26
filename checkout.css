@@ -9,9 +9,15 @@
   align-items: center;
 }
 
+.checkout-container .checkout-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .checkout-container .titles {
   width: 100%;
-  padding: 4rem;
+  padding: 4rem 7.5vw;
 
   display: flex;
   flex-direction: column;
@@ -27,20 +33,40 @@
 
 .checkout-container .titles p {
   margin-top: 0.75rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
   line-height: 1.75rem
 }
 
+.checkout-container .product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .checkout-container .product-card {
-  width: 80%;
-  max-width: 50rem;
+  width: 95%;
+  max-width: 35rem;
   margin-top: 2rem;
   border: 1px solid var(--secundary-gray-color);
   border-radius: 0.2rem;
 
   font-size: 1.5rem;
   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.checkout-container .quantity-and-price {
+  width: 95%;
+  max-width: 50rem;
+  padding: 0.5rem 1.5rem 2rem;
+  margin-top: 1.2rem;
+  border: 1px solid var(--secundary-gray-color);
+  border-radius: 0.2rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +81,7 @@
 }
 
 .checkout-container .product-data {
-  width: 90%;
+  width: 95%;
   padding: 1.2rem 0 2.5rem;
   display: flex;
   flex-direction: column;
@@ -65,7 +91,7 @@
 .checkout-container .product-data img {
   width: 100%;
   margin-bottom: 0.3rem;
-  padding: 0.2rem;
+  padding: 0.3rem;
   border: 1px solid var(--secundary-gray-color);
   border-radius: 0.2rem;
 }
@@ -86,23 +112,16 @@
   margin-top: 0.3rem;
 }
 
-.checkout-container .quantity-and-price {
-  width: 80%;
+form {
+  width: 95%;
   max-width: 50rem;
-  padding: 0.5rem 1.5rem 2rem;
-  margin-top: 1.2rem;
-  border: 1px solid var(--secundary-gray-color);
-  border-radius: 0.2rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 2rem auto 1rem;
 }
 
-form {
-  width: 80%;
-  max-width: 50rem;
-  margin: 2rem auto;
+form .form-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 form section {
@@ -176,7 +195,7 @@ form section + section {
 }
 
 form button {
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   padding: 0.8rem;
   border-radius: 0.3rem;
   
@@ -188,48 +207,77 @@ form button {
   font-size: 1rem;
 }
 
-@media (max-width: 540px) {
+.invalid-field {
+  border: 2px solid var(--secondary-red-color) !important;
+}
+
+@media (min-width: 768px) {
+  .checkout-container .checkout-content {
+    display: grid;
+    grid-template-columns: 14rem 28rem;
+    justify-content: center;
+    padding-bottom: 2rem;
+    gap: 0 2rem;
+  }
+
   .checkout-container .titles {
-    padding: 2rem;
+    padding: 4rem 6vw;
   }
 
-  .checkout-container .titles h1 {
-    font-size: 2rem;
-  }
-  
-  .checkout-container .titles p {
-    max-width: 26rem;
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    line-height: 1.5rem
+  .checkout-container .product-card,
+  .checkout-container .quantity-and-price {
+    width: 100%;
   }
 
-  .checkout-container .product-card-header {
-    font-size: 1.2rem;
-  }
-
-  .checkout-container .product-data .description-item {
-    font-size: 0.9rem;
-  }
-
-  form section + section {
-    margin-top: 2rem;
-  }
-
-  form section p {
-    font-size: 1.1rem;
-  }
-
-  form section .input-field label {
-    font-size: 0.8rem;
-  }
-
-  form section .input-field input,
-  form section .input-field select {
-    font-size: 0.8rem;  
+  form {
+    width: 100%;
+    align-self: flex-start;
+    margin-top: 2.5rem;
   }
 }
 
-.invalid-field {
-  border: 2px solid var(--secondary-red-color) !important;
+@media (min-width: 992px) {
+  .checkout-container .checkout-content {
+    grid-template-columns: 20rem 35rem;
+    padding-bottom: 2rem;
+    gap: 0 2rem;
+  }
+
+  form .form-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    gap: 0 1rem;
+  }
+
+  form section + section {
+    margin-top: 0;
+  }
+
+  form button {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .checkout-container .checkout-content {
+    grid-template-columns: 25rem 50rem;
+    padding-bottom: 2rem;
+    gap: 0 3rem;
+  }
+
+  form .form-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    gap: 0 2rem;
+  }
+
+  form section + section {
+    margin-top: 0;
+  }
+
+  form button {
+    margin-top: 0.75rem;
+  }
 }

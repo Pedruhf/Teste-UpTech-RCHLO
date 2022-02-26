@@ -22,127 +22,133 @@
             <p>Obrigado por comprar na RCHLO! Preencha seus dados para efetivar a compra.</p>
         </div>
 
-        <div class="product-card">
-            <div class="product-card-header">
-                Sua compra
+        <div class="checkout-content">
+            <div class="product-container">
+                <div class="product-card">
+                    <div class="product-card-header">
+                        Sua compra
+                    </div>
+                    <div class="product-data">
+                        <img src="https://static.riachuelo.com.br/RCHLO/14247984003/portrait/279d0565feb361cff852a6a792ffdb5c89890ba3.jpg" alt="Camiseta">
+        
+                        <div class="description-item">
+                            <p>Produto</p>
+                            <span>Camiseta Manga Curta Malha Tie Dye The Simpsons Branco Riachuelo</span>
+                        </div>
+            
+                        <div class="description-item">
+                            <p>Cor</p>
+                            <span>Branco</span>
+                        </div>
+            
+                        <div class="description-item">
+                            <p>Tamanho</p>
+                            <span>G</span>
+                        </div>
+            
+                        <div class="description-item">
+                            <p>Preço</p>
+                            <span id="item-price">R$ 69,90</span>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="quantity-and-price">
+                    <div class="input-field">
+                        <label for="quantity">Quantidade</label>
+                        <input
+                            id="quantity"
+                            type="number"
+                            value="1"
+                            min="1"
+                            max="99"
+                        />
+                    </div>
+                    <div class="input-field">
+                        <label for="total-price">Total:</label>
+                        <input
+                            id="total-price"
+                            type="text"
+                            disabled
+                        />
+                    </div>
+                </div>
             </div>
-            <div class="product-data">
-                <img src="https://static.riachuelo.com.br/RCHLO/14247984003/portrait/279d0565feb361cff852a6a792ffdb5c89890ba3.jpg" alt="Camiseta">
-
-                <div class="description-item">
-                    <p>Produto</p>
-                    <span>Camiseta Manga Curta Malha Tie Dye The Simpsons Branco Riachuelo</span>
+    
+            <form>
+                <div class="form-content">
+                    <section class="personal-data">
+                        <p>Dados pessoais</p>
+                        <div class="input-field">
+                            <label for="fullName">Nome completo</label>
+                            <input
+                                id="fullName"
+                                type="text"
+                                maxlength="200"
+                                required
+                            />
+                        </div>
+                        <div class="input-field">
+                            <label for="email">Email</label>
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="email@exemplo.com"
+                                maxlength="300"
+                                required
+                            />
+                        </div>
+                        <div class="input-field">
+                            <label for="CPF">CPF</label>
+                            <input
+                                id="CPF"
+                                type="text"
+                                placeholder="000.000.000-00"
+                                maxlength="14"
+                                required
+                            />
+                        </div>
+                        <div class="input-field">
+                            <label for="newsletter">
+                                <input id="newsletter" type="checkbox" />
+                                Quero receber a newsletter da RCHLO!
+                            </label>
+                        </div>
+                    </section>
+                    <section title="Cartao de credito">
+                        <p>Cartão de credito</p>
+                        <div class="input-field">
+                            <label for="cardCVV">Numero - CVV</label>
+                            <input
+                                id="cardCVV"
+                                type="text"
+                                maxlength="3"
+                                required
+                            />
+                        </div>
+                        <div class="input-field">
+                            <label for="cardFlag">Bandeira</label>
+                            <select id="cardFlag" required>
+                                <option hidden value="">Selecione uma opção...</option>
+                                <option value="mastercard">MasterCard</option>
+                                <option value="visa">Visa</option>
+                                <option value="americanExpress">American Express</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="cardShelfLife">Validade</label>
+                            <input
+                                id="cardShelfLife"
+                                type="month"
+                                required
+                            />
+                        </div>
+                    </section>
                 </div>
     
-                <div class="description-item">
-                    <p>Cor</p>
-                    <span>Branco</span>
-                </div>
-    
-                <div class="description-item">
-                    <p>Tamanho</p>
-                    <span>G</span>
-                </div>
-    
-                <div class="description-item">
-                    <p>Preço</p>
-                    <span id="item-price">R$ 69,90</span>
-                </div>
-            </div>
+                <button id="submit-button" type="submit">Confirmar Pedido</button>
+            </form>
         </div>
-
-        <div class="quantity-and-price">
-            <div class="input-field">
-                <label for="quantity">Quantidade</label>
-                <input
-                    id="quantity"
-                    type="number"
-                    value="1"
-                    min="1"
-                    max="99"
-                />
-            </div>
-            <div class="input-field">
-                <label for="total-price">Total:</label>
-                <input
-                    id="total-price"
-                    type="text"
-                    disabled
-                />
-            </div>
-        </div>
-
-        <form>
-            <section class="personal-data">
-                <p>Dados pessoais</p>
-                <div class="input-field">
-                    <label for="fullName">Nome completo</label>
-                    <input
-                        id="fullName"
-                        type="text"
-                        maxlength="200"
-                        required
-                    />
-                </div>
-                <div class="input-field">
-                    <label for="email">Email</label>
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="email@exemplo.com"
-                        maxlength="300"
-                        required
-                    />
-                </div>
-                <div class="input-field">
-                    <label for="CPF">CPF</label>
-                    <input
-                        id="CPF"
-                        type="text"
-                        placeholder="000.000.000-00"
-                        maxlength="14"
-                        required
-                    />
-                </div>
-                <div class="input-field">
-                    <label for="newsletter">
-                        <input id="newsletter" type="checkbox" />
-                        Quero receber a newsletter da RCHLO!
-                    </label>
-                </div>
-            </section>
-            <section title="Cartao de credito">
-                <p>Cartão de credito</p>
-                <div class="input-field">
-                    <label for="cardCVV">Numero - CVV</label>
-                    <input
-                        id="cardCVV"
-                        type="text"
-                        maxlength="3"
-                        required
-                    />
-                </div>
-                <div class="input-field">
-                    <label for="cardFlag">Bandeira</label>
-                    <select id="cardFlag" required>
-                        <option hidden value="">Selecione uma opção...</option>
-                        <option value="mastercard">MasterCard</option>
-                        <option value="visa">Visa</option>
-                        <option value="americanExpress">American Express</option>
-                    </select>
-                </div>
-                <div class="input-field">
-                    <label for="cardShelfLife">Validade</label>
-                    <input
-                        id="cardShelfLife"
-                        type="month"
-                        required
-                    />
-                </div>
-            </section>
-
-            <button id="submit-button" type="submit">Confirmar Pedido</button>
-        </form>
     </main>
 
     <script src="./index.js"></script>

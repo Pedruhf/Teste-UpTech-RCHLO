@@ -16,7 +16,10 @@ this.onload = () => {
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  this.validateFields();
+  if(!this.validateFields()) {
+    return;
+  }
+  
   this.showInsertedData();
 });
 
@@ -68,12 +71,12 @@ cvvField.addEventListener("keydown", (event) => {
 
 //Funções
 function validateFields() {
-  this.validateName();
-  this.validateEmail();
-  this.validateCPF();
-  this.validateCVV();
-  this.validateCardFlag();
-  this.validateCardShelfLife();
+  return this.validateName() &&
+    this.validateEmail() &&
+    this.validateCPF() &&
+    this.validateCVV() &&
+    this.validateCardFlag() &&
+    this.validateCardShelfLife();
 }
 
 function validateName() {
@@ -81,15 +84,18 @@ function validateName() {
 
   if (!fullName || !fullName.trim()) {
     this.handleClassOfInvalidInputs("fullName", ADD_INVALID_CLASS);
-    return alert("Por favor, informe seu nome completo");
+    alert("Por favor, informe seu nome completo");
+    return false;
   }
 
   if (fullName.length < 3) {
     this.handleClassOfInvalidInputs("fullName", ADD_INVALID_CLASS);
-    return alert("O nome deve ter pelo menos 3 caracteres");
+    alert("O nome deve ter pelo menos 3 caracteres");
+    return false;
   }
 
   this.handleClassOfInvalidInputs("fullName", REMOVE_INVALID_CLASS);
+  return true;
 }
 
 function validateEmail() {
@@ -97,17 +103,20 @@ function validateEmail() {
 
   if (!email || !email.trim()) {
     this.handleClassOfInvalidInputs("email", ADD_INVALID_CLASS);
-    return alert("Por favor, informe seu e-mail");
+    alert("Por favor, informe seu e-mail");
+    return false;
   }
 
   const regExpEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if(!regExpEmail.test(email)) {
     this.handleClassOfInvalidInputs("email", ADD_INVALID_CLASS);
-    return alert("Padrão inválido para o e-mail. O e-mail deve ter o formato como o seguinte exemplo: email@exemplo.com");
+    alert("Padrão inválido para o e-mail. O e-mail deve ter o formato como o seguinte exemplo: email@exemplo.com");
+    return false;
   }
 
   this.handleClassOfInvalidInputs("email", REMOVE_INVALID_CLASS);
+  return true;
 }
 
 function validateCPF() {
@@ -115,17 +124,20 @@ function validateCPF() {
 
   if (!cpf || !cpf.trim()) {
     this.handleClassOfInvalidInputs("CPF", ADD_INVALID_CLASS);
-    return alert("Por favor, informe seu CPF");
+    alert("Por favor, informe seu CPF");
+    return false;
   }
 
   const regExpCPF = /[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/
 
   if(!regExpCPF.test(cpf)) {
     this.handleClassOfInvalidInputs("CPF", ADD_INVALID_CLASS);
-    return alert("Padrão inválido para o CPF. O CPF deve ter o formato como o seguinte exemplo: 000.000.000-00");
+    alert("Padrão inválido para o CPF. O CPF deve ter o formato como o seguinte exemplo: 000.000.000-00");
+    return false;
   }
 
   this.handleClassOfInvalidInputs("CPF", REMOVE_INVALID_CLASS);
+  return true;
 }
 
 function validateCVV() {
@@ -133,17 +145,20 @@ function validateCVV() {
 
   if (!cvv || !cvv.trim()) {
     this.handleClassOfInvalidInputs("cardCVV", ADD_INVALID_CLASS);
-    return alert("Por favor, informe o CVV do seu cartão de crédito");
+    alert("Por favor, informe o CVV do seu cartão de crédito");
+    return false;
   }
 
   const regExpCVV = /[0-9]{3}/
 
   if(!regExpCVV.test(cvv)) {
     this.handleClassOfInvalidInputs("cardCVV", ADD_INVALID_CLASS);
-    return alert("Padrão inválido para o CVV. O CVV deve conter 3 números como o seguinte exemplo: 000");
+    alert("Padrão inválido para o CVV. O CVV deve conter 3 números como o seguinte exemplo: 000");
+    return false;
   }
 
   this.handleClassOfInvalidInputs("cardCVV", REMOVE_INVALID_CLASS);
+  return true;
 }
 
 function validateCardFlag() {
@@ -151,10 +166,12 @@ function validateCardFlag() {
 
   if(!cardFlag) {
     this.handleClassOfInvalidInputs("cardFlag", ADD_INVALID_CLASS);
-    return alert("Por favor, selecione a bandeira do seu cartão de crédito");
+    alert("Por favor, selecione a bandeira do seu cartão de crédito");
+    return false;
   }
 
   this.handleClassOfInvalidInputs("cardFlag", REMOVE_INVALID_CLASS);
+  return true;
 }
 
 function validateCardShelfLife() {
@@ -162,10 +179,12 @@ function validateCardShelfLife() {
 
   if(!cardShelfLife) {
     this.handleClassOfInvalidInputs("cardShelfLife", ADD_INVALID_CLASS);
-    return alert("Por favor, informe a data de validade do seu cartão de crédito");
+    alert("Por favor, informe a data de validade do seu cartão de crédito");
+    return false;
   }
 
   this.handleClassOfInvalidInputs("cardShelfLife", REMOVE_INVALID_CLASS);
+  return true;
 }
 
 function calculateTotal() {
