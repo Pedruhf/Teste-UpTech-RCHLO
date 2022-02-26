@@ -20,8 +20,14 @@ function handleSubmitForm(event) {
   if(!this.validateFields()) {
     return;
   }
-  
-  this.showInsertedData();
+
+  /*
+    ** Timeout para remover os campos vermelhos antes de mostrar
+    ** o alert de confirmação dos dados da compra
+  */
+  setTimeout(() => {
+    this.showInsertedData();
+  }, 100)
 }
 
 function handleTotalPrice(event) {
@@ -81,7 +87,7 @@ function validateFields() {
 }
 
 function validateName() {
-  const fullName = document.getElementById("fullName").value;
+  const fullName = this.getInputValue("fullName");
 
   if (!fullName || !fullName.trim()) {
     this.handleClassOfInvalidInputs("fullName", ADD_INVALID_CLASS);
@@ -100,7 +106,7 @@ function validateName() {
 }
 
 function validateEmail() {
-  const email = document.getElementById("email").value.toLowerCase();
+  const email = this.getInputValue("email").toLowerCase();
 
   if (!email || !email.trim()) {
     this.handleClassOfInvalidInputs("email", ADD_INVALID_CLASS);
@@ -121,7 +127,7 @@ function validateEmail() {
 }
 
 function validateCPF() {
-  const cpf = document.getElementById("CPF").value;
+  const cpf = this.getInputValue("CPF");
 
   if (!cpf || !cpf.trim()) {
     this.handleClassOfInvalidInputs("CPF", ADD_INVALID_CLASS);
@@ -129,7 +135,7 @@ function validateCPF() {
     return false;
   }
 
-  const regExpCPF = /[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/
+  const regExpCPF = /[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/;
 
   if(!regExpCPF.test(cpf)) {
     this.handleClassOfInvalidInputs("CPF", ADD_INVALID_CLASS);
@@ -142,7 +148,7 @@ function validateCPF() {
 }
 
 function validateCVV() {
-  const cvv = document.getElementById("cardCVV").value;
+  const cvv = this.getInputValue("cardCVV");
 
   if (!cvv || !cvv.trim()) {
     this.handleClassOfInvalidInputs("cardCVV", ADD_INVALID_CLASS);
@@ -150,7 +156,7 @@ function validateCVV() {
     return false;
   }
 
-  const regExpCVV = /[0-9]{3}/
+  const regExpCVV = /[0-9]{3}/;
 
   if(!regExpCVV.test(cvv)) {
     this.handleClassOfInvalidInputs("cardCVV", ADD_INVALID_CLASS);
@@ -163,7 +169,7 @@ function validateCVV() {
 }
 
 function validateCardFlag() {
-  const cardFlag = document.getElementById("cardFlag").value;
+  const cardFlag = this.getInputValue("cardFlag");
 
   if(!cardFlag) {
     this.handleClassOfInvalidInputs("cardFlag", ADD_INVALID_CLASS);
@@ -176,7 +182,7 @@ function validateCardFlag() {
 }
 
 function validateCardShelfLife() {
-  const cardShelfLife = document.getElementById("cardShelfLife").value;
+  const cardShelfLife = this.getInputValue("cardShelfLife");
 
   if(!cardShelfLife) {
     this.handleClassOfInvalidInputs("cardShelfLife", ADD_INVALID_CLASS);
@@ -199,7 +205,7 @@ function calculateTotal() {
 }
 
 function calculateCardShelfLife() {
-  const cardShelLife = document.getElementById("cardShelfLife").value;
+  const cardShelLife = this.getInputValue("cardShelfLife");
   const date = new Date(cardShelLife);
   const formattedDate = `${date.getUTCMonth() + 1}`.padStart(2, "0") + `/${date.getUTCFullYear()}`
   return formattedDate;
@@ -221,31 +227,37 @@ function getFlagName(flagParam) {
   return options[flagParam];
 }
 
-function showInsertedData() {
-  const fullName = document.getElementById("fullName").value;
-  const email = document.getElementById("email").value;
-  const cpf = document.getElementById("CPF").value;
-  const newsletterOption = document.getElementById("newsletter").checked;
-  const cvv = document.getElementById("cardCVV").value;
-  const cardFlag = this.getFlagName(document.getElementById("cardFlag").value);
-  const cardShelfLife = this.calculateCardShelfLife();
-  const total = this.calculateTotal().toLocaleString("pt-br", { style: "currency" , currency: "BRL"});
+function getInputValue(inputId) {
+  return document.getElementById(inputId).value;
+}
 
+function showInsertedData() {
+  const fullName = this.getInputValue("fullName");
+  const email = this.getInputValue("email");
+  const cpf = this.getInputValue("CPF");
+  const newsletterOption = document.getElementById("newsletter").checked;
+  const cvv = this.getInputValue("cardCVV");
+  const cardFlag = this.getFlagName(this.getInputValue("cardFlag"));
+  const cardShelfLife = this.calculateCardShelfLife();
+  const total = this.calculateTotal().toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   alert(
     `
-      Confirme seus dados
+    Confirme seus dados
 
-      Nome: ${fullName}
-      E-mail: ${email}
-      CPF: ${cpf}
-      CVV: ${cvv}
-      Bandeira do cartão de crédito: ${cardFlag}
-      Validate do cartão de crédito: ${cardShelfLife}
+    Nome: ${fullName}
+    E-mail: ${email}
+    CPF: ${cpf}
+    CVV: ${cvv}
+    Bandeira do cartão de crédito: ${cardFlag}
+    Validate do cartão de crédito: ${cardShelfLife}
 
-      ${newsletterOption ? "Aceita receber a newsletter da RCHLO" : "Não quer receber a newsletter da RCHLO"}
+    ${newsletterOption ? "Aceita receber a newsletter da RCHLO" : "Não quer receber a newsletter da RCHLO"}
 
-      Total: ${total}
+    Total: ${total}
     `
   );
 }
