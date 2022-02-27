@@ -42,7 +42,10 @@ function handleTotalPrice(event) {
   }
 
   const totalPrice = this.calculateTotal();
-  document.getElementById("total-price").value = totalPrice.toLocaleString("pt-br", { style: "currency" , currency: "BRL"});
+  document.getElementById("total-price").value = totalPrice.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
 };
 
 cpfField.addEventListener("keydown", (event) => {
